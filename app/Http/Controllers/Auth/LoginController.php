@@ -36,4 +36,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    protected function authenticated(\Illuminate\Http\Request $request, $user)
+    {
+        if ($user->is_admin) {
+            // 管理ユーザ
+            $this->redirectTo = '/admin/project';
+        } else {
+            // 一般ユーザ
+            $this->redirectTo = '/user/project';
+        }
+    }
 }
