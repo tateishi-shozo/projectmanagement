@@ -5,35 +5,28 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <h1>資格一覧・追加</h1>
+        <h1>資格編集</h1>
     </div>
     <div class="container" stylle="martgin-top:50px;">
-        <h2>資格追加</h2>
+        <h3>資格名</h3>
         <form action="{{ action('Admin\LicenseController@create') }}" method="post">
             {{ csrf_field()}}
             <div class="form-group">
                 <input type="text" name="name" class="form-control">
             </div>
-            <button type="submit">追加する</button>
+            <button type="submit">追加</button>
         </form>
-        <h1>資格一覧</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th></th><th></th>
-                </tr>
-            </thead>
-        </table>
+        <h3>登録資格</h3>
+        
         @foreach ($licenses as $license)
-        <tr>
-            <td>{{$license->name}}</td>
-            <td>
-                <form action="{{ action('Admin\licenseController@delete',['id' => $license->id]) }}">
-                    {{ csrf_field() }}
-                    <button type="submit">削除</button>
-                </form>
-            </td>
-        </tr>
+        <table>
+            <tr>
+                <td>{{$license->name}}</td>
+                <td>
+                    <a href="{{ action('Admin\LicenseController@delete',['id' => $license->id]) }}">削除</a>
+                </td>
+            </tr>
+        </table>
         @endforeach
     </div>
 </div>
