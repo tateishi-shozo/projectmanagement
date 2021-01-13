@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function() {
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function(){
         Route::get('project/create', 'Admin\ProjectController@add');
+        Route::post('project/create','Admin\ProjectController@create');
         
         Route::get('license/index', 'Admin\LicenseController@index');
         Route::post('license/index','Admin\LicenseController@create');
