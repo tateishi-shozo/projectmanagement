@@ -19,7 +19,7 @@ class CreateProjectsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('number_of_people');
-            $table->string('memo');
+            $table->string('memo')->nullable();
             $table->json('license_id');
             $table->timestamps();
         });
