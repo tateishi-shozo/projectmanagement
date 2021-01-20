@@ -23,7 +23,11 @@ Auth::routes();
 Route::middleware('auth')->group(function() {
     // 一般ユーザ用
     Route::prefix('user')->group(function(){
-        
+       Route::get('dialy/create', 'User\DialyController@add');
+       
+       Route::get('profile/create', 'User\ProfileController@add');
+       Route::post('profile/create','User\ProfileController@create');
+       
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function(){
@@ -33,5 +37,9 @@ Route::middleware('auth')->group(function() {
         Route::get('license/index', 'Admin\LicenseController@index');
         Route::post('license/index','Admin\LicenseController@create');
         Route::get('license/delete', 'Admin\LicenseController@delete');
+        
+        Route::get('fee/index', 'Admin\FeeController@index');
+        Route::post('fee/index','Admin\FeeController@create');
+        Route::get('Fee/delete', 'Admin\FeeController@delete');
     });
 });

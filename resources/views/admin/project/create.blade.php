@@ -31,7 +31,7 @@
                     <textarea row="5" cols="30" name="memo"></textarea>
                 </div>
                 <div class="license_id">
-                    <label for="project_name">必要資格・人数</label>
+                    <label for="license_id">必要資格・人数</label>
                         @foreach($licenses as $license)
                         <table>
                             <tr>

@@ -13,4 +13,9 @@ class License extends Model
     {
         return $this->belongsToMany('App\Project');
     }
+    
+    public function profiles()
+    {
+        return $this->belongsToMany('App\Profile');
+    }
 }
