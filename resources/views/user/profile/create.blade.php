@@ -8,18 +8,18 @@
             <h2>プロフィール編集</h2>
         </div>
         <div class="profile">
-            <form action="{{ action('User\ProfileController@create') }}" method="post">
+            <form action="{{ action('User\ProfileController@create') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                <div class="name">
+                    <label for="name">名前</label>
+                        {{ $user->name }}
+                </div>
                 <div class="image">
                     <label for="image">プロフィール画像</label>
                     <input type="file" name="image" id="image">
                 </div>
                 <div class="user_id">
                     <input type="hidden" name="user_id" value="{{$user->id}}">
-                </div>
-                <div class="name">
-                    <label for="name">名前</label>
-                        {{ $user->name }}
                 </div>
                 <div class="birthday">
                     <label for="birthday">誕生日</label>
@@ -33,7 +33,7 @@
                     <input type="radio" name="blood_type" id="blood_type"　value="AB">AB
                 </div>
                 <div class="license_id">
-                    <label for="license_id">資格</label>
+                    <label for="license_id">保有資格</label>
                         @foreach($licenses as $license)
                         <table>
                             <tr>

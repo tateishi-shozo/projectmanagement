@@ -24,7 +24,6 @@ class ProfileController extends Controller
     {
         $profile = new Profile;
         $form = $request->all();
-        //dd($request->license_ids);
         
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');

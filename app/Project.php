@@ -15,4 +15,9 @@ class Project extends Model
         return $this->belongsToMany('App\License');
     }
     
+    public function dialies()
+    {
+        return $this->hasMany('App\Dialy');
+    }
+    
 }

@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function() {
     // 一般ユーザ用
     Route::prefix('user')->group(function(){
        Route::get('dialy/create', 'User\DialyController@add');
+       Route::post('dialy/create','User\DialyController@create');
        
        Route::get('profile/create', 'User\ProfileController@add');
        Route::post('profile/create','User\ProfileController@create');
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function() {
     Route::prefix('admin')->middleware('can:admin')->group(function(){
         Route::get('project/create', 'Admin\ProjectController@add');
         Route::post('project/create','Admin\ProjectController@create');
+        Route::get('project/index', 'Admin\ProjectController@index');
         
         Route::get('license/index', 'Admin\LicenseController@index');
         Route::post('license/index','Admin\LicenseController@create');
