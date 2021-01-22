@@ -44,7 +44,7 @@
                                     <th>{{ $project->project_name }}</th>
                                     <td>{{ $project->start_date  }}</td>
                                     <td>{{ $project->end_date  }}</td>
-                                    <td>{{ $project->end_date  }}</td>
+                                    <td>{{ $project->getRemainingdays()  }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
