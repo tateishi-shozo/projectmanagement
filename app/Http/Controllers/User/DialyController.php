@@ -43,4 +43,11 @@ class DialyController extends Controller
         
         return redirect('user/dialy/create');
     }
+    
+    public function index()
+    {
+        $dialys = Dialy::all();
+        
+        return view('user.dialy.index',compact('dialys'));
+    }
 }

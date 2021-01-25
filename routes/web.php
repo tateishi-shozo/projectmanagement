@@ -25,9 +25,13 @@ Route::middleware('auth')->group(function() {
     Route::prefix('user')->group(function(){
        Route::get('dialy/create', 'User\DialyController@add');
        Route::post('dialy/create','User\DialyController@create');
+       Route::get('dialy/index', 'User\DialyController@index');
        
        Route::get('profile/create', 'User\ProfileController@add');
        Route::post('profile/create','User\ProfileController@create');
+       Route::get('profile/','User\ProfileController@index');
+       Route::get('profile/edit','User\ProfileController@edit');
+       Route::post('profile/edit','User\ProfileController@update');
        
     });
     // 管理ユーザ用
@@ -42,6 +46,6 @@ Route::middleware('auth')->group(function() {
         
         Route::get('fee/index', 'Admin\FeeController@index');
         Route::post('fee/index','Admin\FeeController@create');
-        Route::get('Fee/delete', 'Admin\FeeController@delete');
+        Route::get('fee/delete', 'Admin\FeeController@delete');
     });
 });

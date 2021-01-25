@@ -25,7 +25,12 @@ class Project extends Model
     public function getRemainingDays()
     {
         $end_day = new Carbon($this->end_date);
+        $diff =Carbon::today()->diffInDays($end_day,false);
         
-        return Carbon::today()->diffInDays($end_day,false);
+        if($diff >"0"){
+            return Carbon::today()->diffInDays($end_day,false);
+        }else{
+            return "終了";
+        }
     }
 }
