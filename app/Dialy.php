@@ -10,7 +10,7 @@ class Dialy extends Model
     
     public function fees()
     {
-        return $this->belongsToMany('App\Fee');
+        return $this->belongsToMany('App\Fee')->withPivot('weight');
     }
     
     public function user()

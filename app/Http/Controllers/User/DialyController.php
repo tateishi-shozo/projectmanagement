@@ -46,8 +46,19 @@ class DialyController extends Controller
     
     public function index()
     {
-        $dialys = Dialy::all();
+        $dialies = Dialy::all();
+        dd($dialies);
         
-        return view('user.dialy.index',compact('dialys'));
+        foreach($dialies as $dialy){
+            
+            $dialy->project = explode("\n", $dialy->project);
+            
+            $total = 0;
+            
+            foreach($dialy->fee as $fee){
+                $total += $fee->pivot->weight*$fee->price;
+            }}
+        
+        return view('user.dialy.index',compact('dialies','total'));
     }
 }

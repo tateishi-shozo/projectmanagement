@@ -25,12 +25,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($dialys as $dialy)
+                            @foreach($dialies as $dialy)
                                 <tr>
-                                    <th>{{ $dialy->projects->name }}</th>
-                                    <td>{{ $dialy->users->name  }}</td>
+                                    <th>{{ $dialy->project->project_name }}</th>
+                                    <td>{{ $dialy->user->name  }}</td>
                                     <td>{{ $dialy->created_at }}</td>
-                                    <td>{{ $total_fee  }}</td>
+                                    <td>
+                                        @php
+                                        $total = 0;
+                                        
+                                        foreach($dialy->fees as $fee){
+                                            $total += $fee->pivot->weight*$fee->price;
+                                            }
+                                        
+                                        echo $total;
+                                         
+                                        @endphp
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
