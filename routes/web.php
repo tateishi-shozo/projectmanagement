@@ -17,15 +17,16 @@ Route::get('/', function () {
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
-//Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::middleware('verified')->group(function() {
 Route::middleware('auth')->group(function() {
     // 一般ユーザ用
     Route::prefix('user')->group(function(){
        Route::get('dialy/create', 'User\DialyController@add');
        Route::post('dialy/create','User\DialyController@create');
        Route::get('dialy/index', 'User\DialyController@index');
+       Route::get('dialy/edit', 'User\DialyController@edit');
+       Route::post('dialy/edit', 'User\DialyController@update');
+       Route::get('dialy/delete', 'User\DialyController@delete');
        
        Route::get('profile/create', 'User\ProfileController@add');
        Route::post('profile/create','User\ProfileController@create');
