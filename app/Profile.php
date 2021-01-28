@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Profile extends Model
 {
@@ -16,5 +17,10 @@ class Profile extends Model
     public function licenses()
     {
         return $this->belongsToMany('App\License');
+    }
+    
+    public function getBirthDay()
+    {
+        return Carbon::parse($this->birthday)->age;
     }
 }

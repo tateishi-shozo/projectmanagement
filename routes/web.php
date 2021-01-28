@@ -51,5 +51,7 @@ Route::middleware('auth')->group(function() {
         Route::get('fee/index', 'Admin\FeeController@index');
         Route::post('fee/index','Admin\FeeController@create');
         Route::get('fee/delete', 'Admin\FeeController@delete');
+        
+        Route::get('profile/index', 'Admin\ProfileController@index');
     });
 });
