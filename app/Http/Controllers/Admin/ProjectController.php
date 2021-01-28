@@ -53,4 +53,50 @@ class ProjectController extends Controller
       
       return view('admin.project.index',compact('projects','cond_project_name'));
   }
+  
+    public function edit(Request $request)
+    {
+        $project = Project::find($request->id);
+        $licenses = License::all();
+        
+        $license_ids = $project->licenses->pluck('id')->toArray();
+        
+        $license_required_least_counts = [];
+        
+        foreach($project->licenses as $license){
+            $license_required_least_counts[$license->id] = $license->pivot->required_least_count;
+        }
+        
+        return view('admin.project.edit',compact('project','licenses','license_ids','license_required_least_counts'));
+    }
+    
+    public function update(Request $request)
+    {
+        $project = Project::find($request->id);
+        $form = $request->all();
+        
+        $project->fill($form)->save();
+        
+        $requiered_licenses =  array();
+        
+        $forms = $request->all();
+       
+        for($i = 0;$i<count($request->license_ids);$i++)
+        {
+            $license_id = $request->license_ids[$i];
+            $requiered_licenses[$license_id] = ["required_least_count" => $forms["required_least_counts_".$license_id]];
+        }
+        
+        $project->licenses()->sync($requiered_licenses);
+        
+        return redirect('admin/project/index');
+    }
+    
+    public function delete(Request $request)
+    {
+        $project = Project::find($request->id);
+        $project->delete();
+        
+        return redirect('admin/project/index');
+    }
 }

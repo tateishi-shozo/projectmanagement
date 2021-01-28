@@ -14,7 +14,7 @@ class Project extends Model
     //Licenseモデルとのリレーションの定義
     public function licenses()
     {
-        return $this->belongsToMany('App\License');
+        return $this->belongsToMany('App\License')->withPivot('required_least_count');
     }
     
     public function dialies()

@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function() {
         Route::get('project/create', 'Admin\ProjectController@add');
         Route::post('project/create','Admin\ProjectController@create');
         Route::get('project/index', 'Admin\ProjectController@index');
+        Route::get('project/edit','Admin\ProjectController@edit');
+        Route::post('project/edit','Admin\ProjectController@update');
+        Route::get('project/delete','Admin\ProjectController@delete');
         
         Route::get('license/index', 'Admin\LicenseController@index');
         Route::post('license/index','Admin\LicenseController@create');

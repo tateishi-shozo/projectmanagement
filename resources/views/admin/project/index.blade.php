@@ -45,6 +45,16 @@
                                     <td>{{ $project->start_date  }}</td>
                                     <td>{{ $project->end_date  }}</td>
                                     <td>{{ $project->getRemainingdays()  }}</td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\ProjectController@edit', ['id' => $project->id]) }}">編集</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\ProjectController@delete', ['id' => $project->id]) }}">削除</a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -48,7 +48,7 @@ class DialyController extends Controller
     {
         $dialies = Dialy::all();
         
-        return view('user.dialy.index',compact('dialies','total'));
+        return view('user.dialy.index',compact('dialies'));
     }
     
     public function edit(Request $request)
