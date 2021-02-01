@@ -105,15 +105,7 @@ class ProjectController extends Controller
         $project = Project::find($request->id);
         $licenses = License::all();
         
-        $license_ids = $project->licenses->pluck('id')->toArray();
-        
-        $license_required_least_counts = [];
-        
-        foreach($project->licenses as $license){
-            $license_required_least_counts[$license->id] = $license->pivot->required_least_count;
-        }
-        
-        return view('admin.project.assign',compact('project','licenses','license_ids','license_required_least_counts'));
+        return view('admin.project.assign',compact('project','licenses'));
         
     }
 }

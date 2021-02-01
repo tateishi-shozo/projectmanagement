@@ -17,6 +17,7 @@
                                 <th>開始日</th>
                                 <th>終了日</th>
                                 <th>人数</th>
+                                <th>必要資格・人数</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,10 +26,10 @@
                                 <td>{{ $project->start_date  }}</td>
                                 <td>{{ $project->end_date  }}</td>
                                 <td>{{ $project->number_of_people  }}</td>
-                                @foreach($licenses as $license)
+                                @foreach($project->licenses as $license)
                                     <td>
-                                        {{ in_array($license->id,$license_ids) ? $license->name : "" }}
-                                        ×{{ array_key_exists($license->id,$license_required_least_counts) ? $license_required_least_counts[$license->id] : "" }}人
+                                        {{ $license->name }}
+                                        ×{{ $license->pivot->required_least_count }}人
                                     </td>
                                 @endforeach
                             </tr>
