@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function() {
         Route::post('project/edit','Admin\ProjectController@update');
         Route::get('project/delete','Admin\ProjectController@delete');
         
+        Route::get('project/assign','Admin\ProjectController@assign');
+        Route::post('project/assign','Admin\ProjectController@assign');
+        
         Route::get('license/index', 'Admin\LicenseController@index');
         Route::post('license/index','Admin\LicenseController@create');
         Route::get('license/delete', 'Admin\LicenseController@delete');

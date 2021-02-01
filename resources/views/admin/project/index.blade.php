@@ -1,6 +1,6 @@
 @extends('layouts.basic')
 
-@section('title', 'プロジェクト一覧')
+@section('title','プロジェクト一覧')
 
 @section('content')
    <div class="container">
@@ -52,8 +52,16 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a href="{{ action('Admin\ProjectController@delete', ['id' => $project->id]) }}">削除</a>
+                                            <a href="{{ action('Admin\ProjectController@delete', ['id' => $project->id]) }}" >削除</a>
                                         </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('Admin\ProjectController@assign', ['id' => $project->id]) }}" role="button" class="btn btn-primary">アサイン</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="id" value="{{ $project->id }}">
                                     </td>
                                 </tr>
                             @endforeach

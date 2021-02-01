@@ -33,4 +33,9 @@ class Project extends Model
             return "終了";
         }
     }
+    
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Dialy');
     }
+    
+    public function projects()
+    {
+        return $this->belongsToMany('App\Project');
+    }
 }
