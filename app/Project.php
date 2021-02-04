@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Carbon\Carbon;
 
@@ -36,6 +37,26 @@ class Project extends Model
     
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User')->withPivot('start_date','end_date');
+    }
+    
+    public static function GetName($id)
+    {
+        $project = self::find($id);
+        $projects = self::whereBetween('start_date', [$project->start_date, $project->end_date]) ->get();
+        return $projects;
+    }
+    
+    public function getAssignableUsers()
+    {
+        $assignable_users_ids = DB::table('users')
+                        ->leftJoin('project_user','users.id','=','project_user.user_id')
+                        ->where('users.is_admin','=','1')
+                        ->orwhere("project_user.start_date",'>',$this->end_date)
+                        ->orWhere("project_user.end_date",'<',$this->start_date)
+                        ->orwhereNull('project_user.user_id')
+                        ->get();
+                        
+      return $assignable_users_ids;
     }
 }

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 use App\License;
 use App\Project;
+use App\User;
 
 class ProjectController extends Controller
 {
@@ -103,9 +105,20 @@ class ProjectController extends Controller
     public function assign(Request $request)
     {
         $project = Project::find($request->id);
+        
         $licenses = License::all();
         
-        return view('admin.project.assign',compact('project','licenses'));
+        $users = $project->getAssignableUsers();
+        
+        return view('admin.project.assign',compact('project','licenses','users'));
         
     }
+    
+    public function record(Request $request)
+    {
+        $projects = Project::GetName($request->id);
+        
+        return redirect('admin/project/assign',compact('projects','users'));
+    }
+    
 }

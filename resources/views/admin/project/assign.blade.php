@@ -22,7 +22,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th>{{ $project->project_name }}</th>
+                                <td>{{ $project->project_name }}</td>
                                 <td>{{ $project->start_date  }}</td>
                                 <td>{{ $project->end_date  }}</td>
                                 <td>{{ $project->number_of_people  }}</td>
@@ -35,6 +35,19 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="container" stylle="martgin-top:50px;">
+                        <h3>アサイン可能な人</h3>
+                        @foreach($project->getAssignableUsers() as $user)
+                            <form action="{{ action('Admin\ProjectController@record') }}" method="post">
+                                <tr>
+                                    <td>{{$user->name }}</td>
+                                    <td><input type="date" name="start_date" value="{{ $project->start_date }}"></td>
+                                    <td>〜<input type="date" name="endt_date" value="{{ $project->end_date }}"></td>
+                                    <td><button type="submit">追加</button></td>
+                                </tr>
+                            </form>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
