@@ -17,6 +17,6 @@ class ProfileController extends Controller
     {
         $profiles = Profile::all();
         
-        return view('admin.profile.index',compact('profiles','age'));
+        return view('admin.profile.index',compact('profiles'));
     }
 }

@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function() {
        
     });
     // 管理ユーザ用
-    Route::prefix('admin')->middleware('can:admin')->group(function(){
+    Route::prefix('admin')->group(function(){
         Route::get('project/create', 'Admin\ProjectController@add');
         Route::post('project/create','Admin\ProjectController@create');
         Route::get('project/index', 'Admin\ProjectController@index');

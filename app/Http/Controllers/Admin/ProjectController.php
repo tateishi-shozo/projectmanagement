@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\License;
 use App\Project;
 use App\User;
+use App\Profile;
 
 class ProjectController extends Controller
 {
@@ -109,16 +110,20 @@ class ProjectController extends Controller
         $licenses = License::all();
         
         $users = $project->getAssignableUsers();
+        $user = User::find(1);
         
-        return view('admin.project.assign',compact('project','licenses','users'));
+        return view('admin.project.assign',compact('project','licenses','users','user'));
         
     }
     
     public function record(Request $request)
     {
-        $projects = Project::GetName($request->id);
+        $project = Project::find($request->id);
         
-        return redirect('admin/project/assign',compact('projects','users'));
+        $project->users($request->user_id)->sync([$request->start_date,$request->end_date]);
+        
+        $project_user = $project->users()->all();
+        
+        return redirect('admin/project/index',compact('project','project_user'));
     }
-    
 }
