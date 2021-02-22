@@ -10,8 +10,7 @@ use Carbon\Carbon;
 
 class Project extends Model
 {
-    protected $guarded = ['id','created_at','updated_at'];
-    protected $fillable = ['project_name','start_date','end_date','number_of_people','memo'];
+    protected $guarded = [];
     //Licenseモデルとのリレーションの定義
     public function licenses()
     {
@@ -37,7 +36,7 @@ class Project extends Model
     
     public function users()
     {
-        return $this->belongsToMany('App\User')->withPivot('start_date','end_date');
+        return $this->belongsToMany('App\User')->withPivot('start_date','end_date')->withTimestamps();
     }
     
     public function getAssignableUsers()

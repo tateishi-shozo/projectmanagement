@@ -20,6 +20,10 @@ class CreateProjectUserTable extends Migration
             $table->date('end_date');
             //複合キーを定義
             $table->primary(['project_id','user_id']);
+            //外部キー制約を定義
+            $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('user_id')->references('id')->on('users');
+            
             $table->timestamps();
         });
     }

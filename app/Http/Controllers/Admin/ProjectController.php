@@ -49,7 +49,7 @@ class ProjectController extends Controller
       $cond_project_name = $request->cond_project_name;
       
       if ($cond_project_name == '') {
-          $projects = Project::all();
+          $projects = Project::paginate(10);
       } else {
           $projects = Project::where('project_name', $cond_project_name)->get();
       }
@@ -69,6 +69,7 @@ class ProjectController extends Controller
         foreach($project->licenses as $license){
             $license_required_least_counts[$license->id] = $license->pivot->required_least_count;
         }
+        
         
         return view('admin.project.edit',compact('project','licenses','license_ids','license_required_least_counts'));
     }
@@ -110,9 +111,8 @@ class ProjectController extends Controller
         $licenses = License::all();
         
         $users = $project->getAssignableUsers();
-        $user = User::find(1);
         
-        return view('admin.project.assign',compact('project','licenses','users','user'));
+        return view('admin.project.assign',compact('project','licenses','users'));
         
     }
     
@@ -120,10 +120,11 @@ class ProjectController extends Controller
     {
         $project = Project::find($request->id);
         
-        $project->users($request->user_id)->sync([$request->start_date,$request->end_date]);
+        $project_users = array();
+        $project_users[$request->user_id] = ['start_date' => $request->start_date,'end_date' => $request->end_date];
         
-        $project_user = $project->users()->all();
+        $project->users()->sync($project_users);
         
-        return redirect('admin/project/index',compact('project','project_user'));
+        return redirect('admin/project/index',compact('project'));
     }
 }

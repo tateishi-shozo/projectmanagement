@@ -70,5 +70,8 @@
                 </div>
             </div>
         </div>
+        <div class="link">
+            {{ $projects->links() }}
+        </div>
     </div>
 @endsection
