@@ -43,22 +43,22 @@
                    <th>終了日</th>
                    <th>資格</th>
                 </tr>
-            <form action="{{ action('Admin\ProjectController@record') }}" method="post">
-                @csrf
-                @foreach($users as $user)
-                <tr>
-                    <td><img src="{{ asset('storage/image/' . $user->image) }}" height="50" width="50"></td>
-                    <td>{{$user->name }}</td>
-                    <td><input type="date" name="start_date" value="{{ $project->start_date }}"></td>
-                    <td>〜<input type="date" name="end_date" value="{{ $project->end_date }}"></td>
-                    <td>
-                        <input type="submit" class="btn btn-primary" value="追加">
-                    </td>
-                    <td><input type="hidden" id="user_id" name="user_id" value="{{ $user->user_id }}"></td>
-                    <td><input type="hidden" id="id" name="id" value="{{ $project->id }}"></td>
-                </tr>
-                @endforeach
-            </form>
+            @foreach($users as $user)
+                <form action="{{ action('Admin\ProjectController@record') }}" method="post">
+                    @csrf
+                    <tr>
+                        <td><img src="{{ asset('storage/image/' . $user->image) }}" height="50" width="50"></td>
+                        <td>{{$user->name }}</td>
+                        <td><input type="date" name="start_date" value="{{ $project->start_date }}"></td>
+                        <td>〜<input type="date" name="end_date" value="{{ $project->end_date }}"></td>
+                        <td>
+                            <input type="submit" class="btn btn-primary" value="追加">
+                        </td>
+                        <td><input type="hidden" id="user_id" name="user_id" value="{{ $user->user_id }}"></td>
+                        <td><input type="hidden" id="id" name="id" value="{{ $project->id }}"></td>
+                    </tr>
+                </form>
+            @endforeach
         </div>
     </div>
 </div>

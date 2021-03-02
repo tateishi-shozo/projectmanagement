@@ -24,7 +24,7 @@ class ProjectController extends Controller
     public function create(Request $request)
     {
         $project = new Project;
-        $form = $request->except('license_ids','required_least_counts');
+        $form = $request->only('project_name','start_date','end_date','number_of_people','memo');
         
         $project->fill($form);
         $project->save();
@@ -111,7 +111,7 @@ class ProjectController extends Controller
         $licenses = License::all();
         
         $users = $project->getAssignableUsers();
-        
+        dd($users);
         return view('admin.project.assign',compact('project','licenses','users'));
         
     }

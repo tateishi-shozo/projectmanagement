@@ -10,11 +10,11 @@ use Carbon\Carbon;
 
 class Project extends Model
 {
-    protected $guarded = [];
+    protected $guarded =[];
     //Licenseモデルとのリレーションの定義
     public function licenses()
     {
-        return $this->belongsToMany('App\License')->withPivot('required_least_count');
+        return $this->belongsToMany('App\License')->withPivot('required_least_count')->withTimestamps();;
     }
     
     public function dialies()
@@ -45,8 +45,9 @@ class Project extends Model
                         ->leftJoin('project_user','users.id','=','project_user.user_id')
                         ->leftJoin('profiles','users.id','=','profiles.user_id')
                         ->where('users.is_admin','=','1')
-                        ->orwhere("project_user.start_date",'>',$this->end_date)
-                        ->orWhere("project_user.end_date",'<',$this->start_date)
+                        ->where('project_user.end_date','>',now())
+                        ->orwhere('project_user.start_date','>',$this->end_date)
+                        ->orwhere('project_user.end_date','<',$this->start_date)
                         ->orwhereNull('project_user.user_id')
                         ->get();
     }
