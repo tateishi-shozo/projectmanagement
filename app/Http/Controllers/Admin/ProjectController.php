@@ -111,7 +111,7 @@ class ProjectController extends Controller
         $licenses = License::all();
         
         $users = $project->getAssignableUsers();
-        dd($users);
+
         return view('admin.project.assign',compact('project','licenses','users'));
         
     }

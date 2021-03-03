@@ -44,11 +44,11 @@ class Project extends Model
         return DB::table('users')
                         ->leftJoin('project_user','users.id','=','project_user.user_id')
                         ->leftJoin('profiles','users.id','=','profiles.user_id')
-                        ->where('users.is_admin','=','1')
-                        ->where('project_user.end_date','>',now())
-                        ->orwhere('project_user.start_date','>',$this->end_date)
-                        ->orwhere('project_user.end_date','<',$this->start_date)
-                        ->orwhereNull('project_user.user_id')
+                        ->whereNull('project_user.user_id')
+                        ->orwhere(function ($users){
+                            $users->where('project_user.start_date','>',$this->end_date)
+                            ->orwhere('project_user.end_date','<',$this->start_date);
+                        })
                         ->get();
     }
 }
