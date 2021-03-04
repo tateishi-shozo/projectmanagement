@@ -39,7 +39,7 @@ class ProjectController extends Controller
             $requiered_licenses[$license_id] = ["required_least_count" => $forms["required_least_counts_".$license_id]];
         }
 
-        $project->licenses()->sync($requiered_licenses);
+        $project->licenses()->attach($requiered_licenses);
         
         return redirect('admin/project/index');
     }
@@ -122,9 +122,8 @@ class ProjectController extends Controller
         
         $project_users = array();
         $project_users[$request->user_id] = ['start_date' => $request->start_date,'end_date' => $request->end_date];
-        
-        $project->users()->sync($project_users);
-        
-        return redirect('admin/project/index',compact('project'));
+
+        $project->users()->attach($project_users);
+        return back();
     }
 }

@@ -14,11 +14,11 @@
             <div class="form-group">
                 <input type="text" name="name" class="form-control">
             </div>
-            <button type="submit">追加</button>
+            <button type="button" class="btn btn-primary">追加</button>
         </form>
         <h3>登録資格</h3>
         @foreach ($licenses as $license)
-        <table>
+        <table class="table">
             <tr>
                 <td>{{$license->name}}</td>
                 <td>

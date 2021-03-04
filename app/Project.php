@@ -41,14 +41,19 @@ class Project extends Model
     
     public function getAssignableUsers()
     {
+        $not_assinable_user_ids = DB::table('project_user')
+                                    ->where('project_user.start_date','<=',$this->end_date)
+                                    ->where('project_user.end_date','>=',$this->start_date)
+                                    ->pluck('user_id')
+                                    ->all();
+        
         return DB::table('users')
                         ->leftJoin('project_user','users.id','=','project_user.user_id')
                         ->leftJoin('profiles','users.id','=','profiles.user_id')
-                        ->whereNull('project_user.user_id')
-                        ->orwhere(function ($users){
-                            $users->where('project_user.start_date','>',$this->end_date)
-                            ->orwhere('project_user.end_date','<',$this->start_date);
-                        })
+                        ->whereNotIn('users.id', $not_assinable_user_ids)
+                        ->orwhereNull('project_user.user_id')
+                        ->select('name','image','users.id','birthday','blood_type','profiles.user_id')
+                        ->distinct()
                         ->get();
     }
 }
