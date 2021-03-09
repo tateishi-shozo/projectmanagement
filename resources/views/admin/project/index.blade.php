@@ -13,18 +13,19 @@
             </div>
             <div class="col-md-8">
                 <form action="{{ action('Admin\ProjectController@index') }}" method="get">
-                    <div class="form-group row">
-                        <label class="col-md-2">タイトル</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="project_name" value="{{ $cond_project_name }}">
-                        </div>
-                        <div class="col-md-2">
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
-                        </div>
+                    @csrf
+                    <label class="col-md-2">ブロジェクト名</label>
+                        <input type="text" class="form-control" name="cond_project_name" value="{{ $cond_project_name }}">
+                    <div class="float-right">
+                        <select name="sort_by">
+                            <option value="">更新順</option>
+                            <option value="asc" {{ $sort_by=='asc' ? 'selected' : '' }}>開始日が古い順</option>
+                            <option value="desc" {{ $sort_by=='desc' ? 'selected' : '' }}>開始日が新しい順</option>
+                        </select>
+                        <input type="submit" class="btn btn-primary btn-sm" value="検索">
                     </div>
-                </form>
-            </div>
+               </form>
+           </div>
         </div>
         <div class="row">
             <div class="list-news col-md-12 mx-auto">
@@ -36,6 +37,8 @@
                                 <th>開始日</th>
                                 <th>終了日</th>
                                 <th>残日数</th>
+                                <th>人数</th>
+                                <th>担当者</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,6 +48,12 @@
                                     <td>{{ $project->start_date  }}</td>
                                     <td>{{ $project->end_date  }}</td>
                                     <td>{{ $project->getRemainingdays()  }}</td>
+                                    <td>{{ $project->number_of_people}}</td>
+                                    <td>
+                                        @foreach($project->users as $user)
+                                            {{ $user->name }}
+                                        @endforeach
+                                    </td>
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\ProjectController@edit', ['id' => $project->id]) }}">編集</a>
@@ -68,10 +77,10 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="link">
+                    {{ $projects->links() }}
+                </div>
             </div>
-        </div>
-        <div class="link">
-            {{ $projects->links() }}
         </div>
     </div>
 @endsection

@@ -45,17 +45,28 @@ class ProjectController extends Controller
     }
     
     public function index(Request $request)
-  {
-      $cond_project_name = $request->cond_project_name;
+    {
+        $cond_project_name = $request->cond_project_name;
+        $sort_by = $request->sort_by;
+        
+        $query = Project::query();
+        
+        if(isset($cond_project_name))
+        {
+            $query->where('project_name','like', '%'.$cond_project_name.'%');
+        }
+        
+        if(isset($sort_by))
+        {
+            $query->orderBy('start_date',$sort_by);
+        }
+        
+        $projects = $query->paginate(10);
+        
       
-      if ($cond_project_name == '') {
-          $projects = Project::paginate(10);
-      } else {
-          $projects = Project::where('project_name', $cond_project_name)->get();
-      }
-      
-      return view('admin.project.index',compact('projects','cond_project_name'));
-  }
+      return view('admin.project.index',compact('projects','cond_project_name','sort_by'));
+    }
+
   
     public function edit(Request $request)
     {
