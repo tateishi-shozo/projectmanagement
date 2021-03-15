@@ -37,11 +37,10 @@
         <form action="{{ action('Admin\ProjectController@record') }}" method="post">
             @csrf
             <div class="list-news col-md-12 mx-auto">
-                <table class="table table-dark">
                     <h2>アサイン可能な人</h2>
                         <tbody>
                             @foreach($users as $user)
-                                <div class="card ml-3" style="width: 5rem height: 5rem;">
+                                <div class="card ml-3" style="width: 20rem;">
                                     <img class="card-img-top" src="{{ asset('storage/image/' . $user->image) }}" alt="Card image cap">
                                     <div class="card-body">
                                         <h4 class="card-title">{{$user->name }}</h4>
@@ -55,7 +54,6 @@
                                 </div>
                             @endforeach
                         </tbody>
-                </table>
             </div>
         </form>
     </div>

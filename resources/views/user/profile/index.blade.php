@@ -10,7 +10,11 @@
         <div class="profile">
             <div class="image">
                 <label for="image"></label>
-                <img src="{{ asset('storage/image/' . $profile->image) }}">
+                @if($profile->image == null)
+                  <img src="/storage/noimage.png">
+                @else
+                  <img src="{{ asset('storage/image/' . $profile->image) }}">
+                @endif
             </div>
             <div class="name">
                 <label for="name">名前</label>

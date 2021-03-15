@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <form action="{{ action('Admin\ProjectController@index') }}" method="get">
                     @csrf
-                    <label class="col-md-2">ブロジェクト名</label>
+                    <label class="col-md-3">ブロジェクト名</label>
                         <input type="text" class="form-control" name="cond_project_name" value="{{ $cond_project_name }}">
                     <div class="float-right">
                         <select name="sort_by">

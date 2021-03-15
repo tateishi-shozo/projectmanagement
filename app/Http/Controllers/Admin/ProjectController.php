@@ -44,6 +44,7 @@ class ProjectController extends Controller
         return redirect('admin/project/index');
     }
     
+    
     public function index(Request $request)
     {
         $cond_project_name = $request->cond_project_name;
