@@ -14,7 +14,7 @@
             <div class="form-group">
                 <input type="text" name="name" class="form-control">
             </div>
-            <button type="button" class="btn btn-primary">追加</button>
+            <input type="submit" class="btn btn-primary" value="追加">
         </form>
         <h3>登録資格</h3>
         @foreach ($licenses as $license)

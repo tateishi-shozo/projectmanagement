@@ -89,7 +89,7 @@ class ProjectController extends Controller
     public function update(Request $request)
     {
         $project = Project::find($request->id);
-        $form = $request->all();
+        $form = $request->only('project_name','start_date','end_date','number_of_people','memo');
         
         $project->fill($form)->save();
         
@@ -123,8 +123,10 @@ class ProjectController extends Controller
         $licenses = License::all();
         
         $users = $project->getAssignableUsers();
+        
+        $notassingusers = $project->notAssignableUsers();
 
-        return view('admin.project.assign',compact('project','licenses','users'));
+        return view('admin.project.assign',compact('project','licenses','users','notassingusers'));
         
     }
     

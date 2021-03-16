@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class License extends Model
 {
-    protected $fillable = ['name'];
+    protected $guarded =[];
     
     //Projectモデルとのリレーション定義
     public function projects()

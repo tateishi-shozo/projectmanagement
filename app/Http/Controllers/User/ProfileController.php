@@ -28,12 +28,12 @@ class ProfileController extends Controller
         
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
-            dd($path);
             $profile->image = basename($path);
           } else {
               $profile->image = basename("public/image/noimage.png");
           }
-          
+        
+        unset($form['image']); 
         $profile->fill($form);
         $profile->save();
         
@@ -70,10 +70,12 @@ class ProfileController extends Controller
         
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
-            $form['image']= basename($path);
+            $profile->image = basename($path);
           } 
         
-        $profile->fill($form)->save();
+        unset($form['image']);
+        $profile->fill($form);
+        $profile->save();
         
         $profile->licenses()->sync($request->license_ids);
         

@@ -20,7 +20,7 @@ class LicenseController extends Controller
     {
         $license = new License;
         $form = $request->all();
-        unset($form['_token']);
+        
         $license->fill($form)->save();
         
         return redirect('/admin/license/index');

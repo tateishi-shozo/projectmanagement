@@ -13,7 +13,7 @@
                 @if($profile->image == null)
                   <img src="/storage/noimage.png">
                 @else
-                  <img src="{{ asset('storage/image/' . $profile->image) }}">
+                  <img src="{{ asset('storage/image/' . $profile->image) }}" height="200" width="200">
                 @endif
             </div>
             <div class="name">
