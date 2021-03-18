@@ -45,6 +45,7 @@ Route::group(['middleware' =>['auth','can:admin']],function() {
         
         Route::get('admin/project/assign','Admin\ProjectController@assign');
         Route::post('admin/project/assign','Admin\ProjectController@record');
+        Route::post('admin/project/adding','Admin\ProjectController@remove');
         
         Route::get('admin/license/index', 'Admin\LicenseController@index');
         Route::post('admin/license/index','Admin\LicenseController@create');

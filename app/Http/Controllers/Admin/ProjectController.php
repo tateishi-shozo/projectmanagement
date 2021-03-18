@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\PostRequest;
 
 use App\License;
 use App\Project;
@@ -52,13 +54,10 @@ class ProjectController extends Controller
         
         $query = Project::query();
         
-        if(isset($cond_project_name))
-        {
+        if(isset($cond_project_name)){
             $query->where('project_name','like', '%'.$cond_project_name.'%');
         }
-        
-        if(isset($sort_by))
-        {
+        if(isset($sort_by)){
             $query->orderBy('start_date',$sort_by);
         }
         
@@ -138,6 +137,16 @@ class ProjectController extends Controller
         $project_users[$request->user_id] = ['start_date' => $request->start_date,'end_date' => $request->end_date];
 
         $project->users()->attach($project_users);
+        
+        return back();
+    }
+    
+    public function remove(Request $request)
+    {
+        $project = Project::find($request->id);
+        
+        $project->users()->detach($request->user_id);
+        
         return back();
     }
 }

@@ -62,6 +62,7 @@ class Project extends Model
         return DB::table('project_user')
                         ->leftJoin('profiles','project_user.user_id','=','profiles.user_id')
                         ->leftJoin('users','project_user.user_id','=','users.id')
+                        ->leftJoin('projects','project_user.project_id','=','projects.id')
                         ->where('project_user.start_date','<=',$this->end_date)
                         ->where('project_user.end_date','>=',$this->start_date)
                         ->distinct('project_user.user_id')
