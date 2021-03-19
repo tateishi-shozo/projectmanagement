@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 use App\Profile;
 use App\License;
@@ -23,6 +24,8 @@ class ProfileController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request,Profile::$rules);
+        
         $profile = new Profile;
         $form = $request->all();
         

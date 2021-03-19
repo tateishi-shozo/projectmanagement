@@ -10,6 +10,13 @@
         <div class="project">
             <form action="{{ action('Admin\ProjectController@create') }}" method="post">
                 @csrf
+                 @if (count($errors) > 0)
+                    <ul>
+                        @foreach($errors->all() as $e)
+                            <li>{{ $e }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <div class="project_name">
                     <label for="project_name">プロジェクト名</label>
                     <input type="text" name="project_name" id="project_name">
@@ -44,7 +51,7 @@
                         @endforeach
                 </div>
                 <div class="submit">
-                    <input type="submit"　min="1">
+                    <input type="submit" class="btn btn-primary"　min="1">
                 </div>
             </form>
         </div>

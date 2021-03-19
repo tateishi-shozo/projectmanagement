@@ -28,7 +28,7 @@
            </div>
         </div>
         <div class="row">
-            <div class="list-news col-md-12 mx-auto">
+            <div class="col-md-12 mx-auto">
                 <div class="row">
                     <table class="table table-striped">
                         <thead>
@@ -51,7 +51,10 @@
                                     <td>{{ $project->number_of_people}}</td>
                                     <td>
                                         @foreach($project->users as $user)
-                                            {{ $user->name }}
+                                        <div class="float-left m-1">
+                                            <img src="{{ asset('storage/image/' . $user->profile->image) }}" width="50" height="50">
+                                            <br>{{ $user->name }}
+                                        </div>
                                         @endforeach
                                     </td>
                                     <td>
@@ -67,6 +70,11 @@
                                     <td>
                                         <div>
                                             <a href="{{ action('Admin\ProjectController@assign', ['id' => $project->id]) }}" role="button" class="btn btn-primary">アサイン</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <a href="{{ action('User\DialyController@create', ['id' => $project->id]) }}" role="button" class="btn btn-primary">日報作成</a>
                                         </div>
                                     </td>
                                     <td>

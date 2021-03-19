@@ -24,6 +24,8 @@ class DialyController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request,Dialy::$rules);
+        
         $dialy = new Dialy;
         $form = $request->all();
         

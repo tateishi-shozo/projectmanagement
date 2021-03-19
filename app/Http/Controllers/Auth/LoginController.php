@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\License;
+use App\Project;
+use App\User;
+use App\Profile;
+
 class LoginController extends Controller
 {
     /*
@@ -39,12 +44,16 @@ class LoginController extends Controller
     
     protected function authenticated(\Illuminate\Http\Request $request, $user)
     {
-        if ($user->is_admin) {
+        if($user->profile == null){
+            $this->redirectTo = '/user/profile/create';
+        }elseif($user->is_admin == 2) {
             // 管理ユーザ
-            $this->redirectTo = '/admin/project';
+            $this->redirectTo = 'admin/project/index';
         } else {
             // 一般ユーザ
-            $this->redirectTo = '/user/project';
+            return redirect(route('user.index', [
+                'user' => $user->id,
+            ]));
         }
     }
 }

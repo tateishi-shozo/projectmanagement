@@ -8,6 +8,10 @@ class License extends Model
 {
     protected $guarded =[];
     
+    public static $rules = array(
+        'name' => 'required',
+    );
+    
     //Projectモデルとのリレーション定義
     public function projects()
     {

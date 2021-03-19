@@ -11,7 +11,14 @@ use Carbon\Carbon;
 class Project extends Model
 {
     protected $guarded =[];
-    //Licenseモデルとのリレーションの定義
+    
+    public static $rules = array(
+        'project_name' => 'required',
+        'start_date' => 'required',
+        'end_date' =>'required',
+        'number of people' => 'required',
+    );
+    
     public function licenses()
     {
         return $this->belongsToMany('App\License')->withPivot('required_least_count')->withTimestamps();;

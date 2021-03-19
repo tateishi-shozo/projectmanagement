@@ -8,6 +8,11 @@ class Dialy extends Model
 {
     protected $fillable =['user_id','project_id','memo'];
     
+    public static $rules = array(
+        'fee_ids' => 'required',
+        'weight' => 'required',
+    );
+    
     public function fees()
     {
         return $this->belongsToMany('App\Fee')->withPivot('weight');

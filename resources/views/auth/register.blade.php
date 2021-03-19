@@ -65,8 +65,10 @@
                             <label for="is_admin" class="col-md-4 col-form-label text-md-right">{{ __('Is_admin') }}</label>
 
                             <div class="col-md-6">
-                                <input id="is_admin" type="radio" class="form-control @error('is_admin') is-invalid @enderror" name="is_admin" value="1" required autocomplete="is_admin" autofocus>一般ユーザー
-                                <input id="is_admin" type="radio" class="form-control @error('is_admin') is-invalid @enderror" name="is_admin" value="2" required autocomplete="is_admin" autofocus>管理者
+                                <label for="is_admin">一般ユーザー</label>
+                                <input id="is_admin" type="radio" class="form-control @error('is_admin') is-invalid @enderror" name="is_admin" value="1" required autocomplete="is_admin" autofocus>
+                                <label for="is_admin">管理者</label>
+                                <input id="is_admin" type="radio" class="form-control @error('is_admin') is-invalid @enderror" name="is_admin" value="2" required autocomplete="is_admin" autofocus>
                                 @error('is_admin')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

@@ -18,9 +18,11 @@ class FeeController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request,Fee::$rules);
+        
         $fee = new Fee;
         $form = $request->all();
-       // unset($form['_token']);
+        
         $fee->fill($form)->save();
         
         return redirect('/admin/fee/index');

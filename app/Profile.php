@@ -3,11 +3,19 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 use Carbon\Carbon;
 
 class Profile extends Model
 {
     protected $fillable = ['user_id','birthday','blood_type','image'];
+    
+    public static $rules = array(
+        'birthday' => 'required',
+        'blood_type' => 'required',
+    );
     
     public function user()
     {

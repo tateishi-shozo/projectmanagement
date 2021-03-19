@@ -10,6 +10,13 @@
         <div class="dialy">
             <form action="{{ action('User\DialyController@create') }}" method="post" >
                 @csrf
+                @if (count($errors) > 0)
+                    <ul>
+                        @foreach($errors->all() as $e)
+                            <li>{{ $e }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <div class="name">
                     <label for="name">作成者</label>
                         {{ $user->name }}
@@ -43,7 +50,7 @@
                         <textarea name="memo"></textarea>
                 </div>
                 <div class="submit">
-                    <input type="submit">
+                    <input type="submit" class="btn btn-primary" value="完了">
                 </div>
             </form>
         </div>

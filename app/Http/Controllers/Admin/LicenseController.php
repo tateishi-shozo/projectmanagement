@@ -18,6 +18,8 @@ class LicenseController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request,License::$rules);
+        
         $license = new License;
         $form = $request->all();
         

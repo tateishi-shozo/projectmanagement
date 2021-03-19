@@ -10,6 +10,13 @@
         <div class="profile">
             <form action="{{ action('User\ProfileController@create') }}" method="post" enctype="multipart/form-data">
                 @csrf
+                 @if (count($errors) > 0)
+                    <ul>
+                        @foreach($errors->all() as $e)
+                            <li>{{ $e }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <div class="name">
                     <label for="name">名前</label>
                         {{ $user->name }}
@@ -45,7 +52,7 @@
                         @endforeach
                 </div>
                 <div class="submit">
-                    <input type="submit">
+                    <input type="submit"class="btn btn-primary" value="完了">
                 </div>
             </form>
         </div>
