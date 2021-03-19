@@ -8,7 +8,7 @@
             <h2>プロジェクト</h2>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 <a href="{{ action('Admin\ProjectController@add') }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
             <div class="col-md-8">
@@ -52,8 +52,8 @@
                                     <td>
                                         @foreach($project->users as $user)
                                         <div class="float-left m-1">
-                                            <img src="{{ asset('storage/image/' . $user->profile->image) }}" width="50" height="50">
-                                            <br>{{ $user->name }}
+                                            <img src="{{ asset('storage/image/' . $user->profile->image) }}" width="50" height="50" class="rounded-circle">
+                                            <p class="text-center">{{ $user->name }}</p>
                                         </div>
                                         @endforeach
                                     </td>

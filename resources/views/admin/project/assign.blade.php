@@ -7,10 +7,12 @@
     <div class="row">
         <h2>プロジェクト</h2>
     </div>
-    <div class="float-right">
-        <a href="https://5110717bc5dc465ebbfa92ed841e2fa3.vfs.cloud9.us-east-2.amazonaws.com/admin/project/index" role="button" class="btn btn-primary">完了</a>
+    <div class="row m-1">
+        <div class="float-right">
+        <a href="{{ action('Admin\ProjectController@index')}}" role="button" class="btn btn-primary">完了</a>
+        </div>
     </div>
-    <div class="list-news col-md-12 mx-auto">
+    <div class="col-md-12 mx-auto">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -34,45 +36,40 @@
             </tbody>
         </table>
     </div>
-    <div class="row">
-        <h2>候補者</h2>
-    </div>
-    <div class="row">
-        <tbody>
-            <div class="card-columns">
-            @foreach($users as $user)
-                <form action="{{ action('Admin\ProjectController@record') }}" method="post">
-                    @csrf
-                    <div class="card ml-3" style="width:10rem;">
-                        <img class="card-img-top" src="{{ asset('storage/image/' . $user->image) }}" alt="Card image cap" height="150">
-                        <div class="card-body">
-                            <h4 class="card-title">{{$user->name }}</h4>
-                            <input type="hidden" name="start_date" value="{{ $project->start_date }}">
-                            <input type="hidden" name="end_date" value="{{ $project->end_date }}">
-                            <input type="hidden" name="user_id" value="{{ $user->user_id }}">
-                            <input type="hidden" name="id" value="{{ $project->id }}">
-                            <input type="submit" class="btn btn-primary" value="追加">
+    <div class="m-auto">
+        <h2 class="border border-secondary bg-secondary text-white" style="padding:10px;">アサイン可能</h2>
+            <div class="card-deck">
+                @foreach($users as $user)
+                    <form action="{{ action('Admin\ProjectController@record') }}" method="post">
+                        @csrf
+                        <div class="card m-2" style="width:10rem;">
+                            <img class="card-img" src="{{ asset('storage/image/' . $user->image) }}" alt="Card image" height="150">
+                            <div class="card-body">
+                                <h4 class="card-title">{{$user->name }}</h4>
+                                <input type="hidden" name="start_date" value="{{ $project->start_date }}">
+                                <input type="hidden" name="end_date" value="{{ $project->end_date }}">
+                                <input type="hidden" name="user_id" value="{{ $user->user_id }}">
+                                <input type="hidden" name="id" value="{{ $project->id }}">
+                                <input type="submit" class="btn btn-primary" value="追加">
+                            </div>
                         </div>
-                    </div>
-                </form>
-            @endforeach
+                    </form>
+                @endforeach
             </div>
-        </tbody>
     </div>
-    <div class="row">
-        <h2>アサイン済</h2>
-    </div>
-    <div class="row">
-        <tbody>
-            <div class="card-columns">
+    <div class="m-auto">
+        <h2 class="border border-secondary bg-secondary text-white" style="padding:10px;">アサイン終了</h2>
+            <div class="card-deck">
                 @foreach($notassingusers as $notassinguser)
                     <form action="{{ action('Admin\ProjectController@remove') }}" method="post">
                         @csrf
-                            <div class="card ml-3" style="width:10rem;">
-                                <img class="card-img-top" src="{{ asset('storage/image/' . $notassinguser->image) }}" alt="Card image cap" height="150">
+                            <div class="card m-2" style="width:10rem;">
+                                    <img class="card-img" src="{{ asset('storage/image/' . $notassinguser->image) }}" alt="Card image" height="150">
+                                    <div class="card-img-overlay">
+                                        <h2 class="card-text text-center m-3">{{ $notassinguser->project_name }}</h2>
+                                    </div>
                                 <div class="card-body">
                                     <h4 class="card-title">{{$notassinguser->name }}</h4>
-                                    <div>{{ $notassinguser->project_name }}</div>
                                     <input type="hidden" name="start_date" value="{{ $project->start_date }}">
                                     <input type="hidden" name="end_date" value="{{ $project->end_date }}">
                                     <input type="hidden" id="user_id" name="user_id" value="{{ (int)$notassinguser->user_id }}">
@@ -83,7 +80,6 @@
                     </form>
                 @endforeach
             </div>
-        </tbody>
     </div>
 </div>
 @endsection
