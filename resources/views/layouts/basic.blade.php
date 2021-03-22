@@ -32,9 +32,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('admin/project/index') }}"><i class="fas fa-home mr-1"></i>HOME</a></li>
-                    </ul>
+                    @if(Auth::user()->is_admin == "2")
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/project/index') }}"><i class="fas fa-home mr-1"></i>工事一覧</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('user/dialy/index') }}"><i class="fas fa-home mr-1"></i>日報一覧</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/profile/index') }}"><i class="fas fa-home mr-1"></i>ユーザー一覧</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/license/index') }}"><i class="fas fa-home mr-1"></i>資格編集</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('admin/fee/index') }}"><i class="fas fa-home mr-1"></i>料金編集</a></li>
+                        </ul>
+                    @else
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link" href="{{ route('user.index', ['user' => Auth::user()->id,]) }}"><i class="fas fa-home mr-1"></i>工事一覧</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url('user/dialy/index') }}"><i class="fas fa-home mr-1"></i>日報一覧</a></li>
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -51,16 +62,17 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ asset('storage/image/' . Auth::user()->profile->image) }}" width="30" height="30" class="rounded-circle">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="nav-link" href="{{ url('user/profile/') }}"><i class="fas fa-home mr-1"></i>プロフィール</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>

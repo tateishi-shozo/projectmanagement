@@ -16,6 +16,7 @@
                             <th>ユーザー</th>
                             <th>名前</th>
                             <th>年齢</th>
+                            <th>誕生日</th>
                             <th>血液型</th>
                             <th>保有資格</th>
                         </tr>
@@ -26,6 +27,7 @@
                                 <th><img src="{{ asset('storage/image/' . $profile->image) }}" height="100" width="100"></th>
                                 <td>{{ $profile->user->name }}</td>
                                 <td>{{ $profile->getBirthDay() }}歳</td>
+                                <td>{{ $profile->birthday }}</td>
                                 <td>{{ $profile->blood_type  }}</td>
                                 <td>
                                 @foreach($profile->licenses as $license)

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\PostRequest;
 
 use App\Dialy;
 use App\User;
@@ -24,8 +28,7 @@ class DialyController extends Controller
     
     public function create(Request $request)
     {
-        $this->validate($request,Dialy::$rules);
-        
+
         $dialy = new Dialy;
         $form = $request->all();
         
@@ -44,11 +47,12 @@ class DialyController extends Controller
         $dialy->fees()->sync($dialy_fees);
         
         return redirect('user/dialy/index');
+        
     }
     
     public function index()
     {
-        $dialies = Dialy::all();
+        $dialies = Dialy::paginate(10);
         
         return view('user.dialy.index',compact('dialies'));
     }

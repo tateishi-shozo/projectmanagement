@@ -59,6 +59,9 @@
                     </tbody>
                 </table>
             </div>
+            <div class="link">
+                {{ $dialies->links() }}
+            </div>
         </div>
     </div>
 </div>

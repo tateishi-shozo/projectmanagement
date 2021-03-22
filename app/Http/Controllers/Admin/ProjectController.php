@@ -25,9 +25,6 @@ class ProjectController extends Controller
     
     public function create(Request $request)
     {
-        $this->validate($request,Project::$rules);
-        
-        DB::transaction(function(){
         
         $project = new Project;
         $form = $request->only('project_name','start_date','end_date','number_of_people','memo');
@@ -39,6 +36,7 @@ class ProjectController extends Controller
         
         $forms = $request->all();
        
+        
         for($i = 0;$i<count($request->license_ids);$i++)
         {
             $license_id = $request->license_ids[$i];
@@ -48,7 +46,6 @@ class ProjectController extends Controller
         $project->licenses()->attach($requiered_licenses);
         
         return redirect('admin/project/index');
-        });
     }
     
     
