@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\PostRequest;
 
+use App\Exceptions\RedirectExceptions;
+
 use App\Dialy;
 use App\User;
 use App\Fee;
@@ -28,7 +30,17 @@ class DialyController extends Controller
     
     public function create(Request $request)
     {
-
+        try{
+            if(isset($request)){
+                throw new \Exception('メールの形式が正しくありません。');
+            }
+        }catch (\Exception $e) {
+            report($e);
+            
+            throw new RedirectExceptions(redirect('user/dirly/create'), $e->getMessage());
+            exit;
+        }
+    
         $dialy = new Dialy;
         $form = $request->all();
         

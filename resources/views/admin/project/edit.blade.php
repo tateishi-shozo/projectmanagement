@@ -47,7 +47,7 @@
                     <input type="hidden" name="id" value="{{ $project->id }}">
                 </div>
                 <div class="submit">
-                    <input type="submit"　min="1">
+                    <input type="submit"　class="btn btn-primary" value="完了">
                 </div>
             </form>
         </div>

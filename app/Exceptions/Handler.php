@@ -46,6 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \App\Exceptions\RedirectExceptions) {
+            return \Illuminate\Support\Facades\Redirect::To($exception->redirectTo)->withErrors([ 'exception' => $exception->message]);
+        }
+        
         return parent::render($request, $exception);
     }
 }

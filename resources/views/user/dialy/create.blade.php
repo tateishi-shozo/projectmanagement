@@ -17,6 +17,11 @@
                         @endforeach
                     </ul>
                 @endif
+                @if ($errors->has('exception'))
+                    <div class="notification is-danger">
+                        <strong>{{ $errors->first('exception') }}</strong>
+                    </div>
+                @endif
                 <div class="name">
                     <label for="name">作成者</label>
                         {{ $user->name }}
