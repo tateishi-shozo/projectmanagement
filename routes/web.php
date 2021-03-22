@@ -12,9 +12,11 @@
 */
 //第一引数は文字列（URL)　第二引数はコールバック関数→①コントローラーで定義　②直接ここで定義（クロージャ）
 Auth::routes();
+
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' =>['auth']],function() {

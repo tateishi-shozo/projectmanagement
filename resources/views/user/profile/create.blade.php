@@ -1,11 +1,11 @@
 @extends('layouts.basic')
 
-@section('title', 'プロフィール編集')
+@section('title', 'プロフィール登録')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>プロフィール編集</h2>
+            <h2>プロフィール登録</h2>
         </div>
         <div class="profile">
             <form action="{{ action('User\ProfileController@create') }}" method="post" enctype="multipart/form-data">
