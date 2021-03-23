@@ -20,7 +20,6 @@ class CreateProjectsTable extends Migration
             $table->date('end_date');
             $table->integer('number_of_people');
             $table->string('memo')->nullable();
-            $table->json('license_id');
             $table->timestamps();
         });
     }

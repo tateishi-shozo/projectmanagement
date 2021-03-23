@@ -13,7 +13,7 @@ class CreateFeesTable extends Migration
      */
     public function up()
     {
-        Schema::create('fee', function (Blueprint $table) {
+        Schema::create('fees', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('place');
             $table->string('classification');
