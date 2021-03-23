@@ -37,7 +37,7 @@
         </table>
     </div>
     <div class="m-auto">
-        <h2 class="border border-secondary bg-secondary text-white" style="padding:10px;">アサイン可能</h2>
+        <h2 class="border border-secondary bg-primary text-white" style="padding:10px;">アサイン可能</h2>
             <div class="card-deck">
                 @foreach($users as $user)
                     <form action="{{ action('Admin\ProjectController@record') }}" method="post">
