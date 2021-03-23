@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\PostRequest;
 
+use App\Exceptions\RedirectExceptions;
+
 use App\License;
 use App\Project;
 use App\User;
@@ -25,6 +27,28 @@ class ProjectController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request, Project::$rules);
+        
+        $requiered_licenses =  array();
+        $forms = $request->all();
+        
+        try{
+            for($i = 0;$i<count($request->license_ids);$i++){
+                
+                $license_id = $request->license_ids[$i];
+                
+                if(isset($forms["required_least_counts_".$license_id])){
+                    
+                }else{
+                throw new \Exception('必要資格か人数が未入力か不一致です');
+            }
+        }
+        }catch(\Exception $e) {
+            report($e);
+            
+            throw new RedirectExceptions(route('admin.project.create'), $e->getMessage());
+            exit;
+        }
         
         $project = new Project;
         $form = $request->only('project_name','start_date','end_date','number_of_people','memo');
@@ -33,7 +57,6 @@ class ProjectController extends Controller
         $project->save();
 
         $requiered_licenses =  array();
-        
         $forms = $request->all();
        
         

@@ -43,7 +43,7 @@ class DialyController extends Controller
                 if(isset($forms["weight_".$fee_id])){
                     
                 }else{
-                throw new \Exception('場所と重量が未入力か不一致です');
+                throw new \Exception('場所か重量が未入力か不一致です');
             }
         }
         }catch(\Exception $e) {
@@ -83,6 +83,7 @@ class DialyController extends Controller
     
     public function edit(Request $request)
     {
+        
         $dialy = Dialy::find($request->id);
         $user = Auth::user();
         $fees = Fee::all();
@@ -99,6 +100,8 @@ class DialyController extends Controller
     
     public function update(Request $request)
     {
+        $this->validate($request, Dialy::$rules);
+        
         $dialy = Dialy::find($request->id);
         $form = $request->all();
         

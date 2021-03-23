@@ -16,7 +16,8 @@ class Project extends Model
         'project_name' => 'required',
         'start_date' => 'required',
         'end_date' =>'required',
-        'number of people' => 'required',
+        'number_of_people' => 'required',
+        'license_ids' => 'required'
     );
     
     public function licenses()

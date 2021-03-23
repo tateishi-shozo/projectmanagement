@@ -7,6 +7,13 @@
         <div class="row">
             <h2>日報編集</h2>
         </div>
+            @if ($errors->has('exception') or count($errors) > 0)
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         <div class="dialy">
             <form action="{{ action('User\DialyController@update') }}" method="post" >
                 @csrf

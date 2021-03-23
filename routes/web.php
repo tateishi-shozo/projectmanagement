@@ -42,7 +42,7 @@ Route::group(['middleware' =>['auth']],function() {
     Route::group(['middleware' =>['auth','can:admin']],function() {
         
             Route::get('admin/project/create', 'Admin\ProjectController@add');
-            Route::post('admin/project/create','Admin\ProjectController@create');
+            Route::post('admin/project/create','Admin\ProjectController@create')->name('admin.project.create');
             Route::get('admin/project/index', 'Admin\ProjectController@index');
             Route::get('admin/project/edit','Admin\ProjectController@edit');
             Route::post('admin/project/edit','Admin\ProjectController@update');

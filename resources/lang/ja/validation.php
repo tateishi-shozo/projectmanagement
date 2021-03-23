@@ -149,7 +149,7 @@ return [
         'project_name' => 'プロジェクト名',
         'start_date' => '開始日',
         'end_date' =>'終了日',
-        'number of people' => '人数',
+        'number_of_people' => '人数',
         'memo' => 'メモ',
         'fee_ids' => '場所',
         'weight' => '重量',
@@ -160,7 +160,8 @@ return [
         'price' =>'金額',
         'name' => '資格名',
         'fee_ids' => '場所',
-        'weight' =>'重量'
+        'weight' =>'重量',
+        'license_ids' =>'必要資格'
         ]
 
 ];
