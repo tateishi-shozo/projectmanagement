@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' =>['auth']],function() {
     
     Route::get('user/dialy/create', 'User\DialyController@add');
-       Route::post('user/dialy/create','User\DialyController@create');
+       Route::post('user/dialy/create','User\DialyController@create')->name('user.dialy.create');
        Route::get('user/dialy/index', 'User\DialyController@index');
        Route::get('user/dialy/edit', 'User\DialyController@edit');
        Route::post('user/dialy/edit', 'User\DialyController@update');

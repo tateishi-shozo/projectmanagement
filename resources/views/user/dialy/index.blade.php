@@ -49,11 +49,6 @@
                                         <a href="{{ action('User\DialyController@edit', ['id' => $dialy->id]) }}">編集</a>
                                     </div>
                                 </td>
-                                <td>
-                                    <div>
-                                        <a href="{{ action('User\DialyController@delete', ['id' => $dialy->id]) }}">削除</a>
-                                    </div>
-                                </td>
                             </tr>
                         @endforeach
                     </tbody>

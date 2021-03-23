@@ -40,7 +40,7 @@
                 </div>
                 <input type="hidden" name="id" value="{{ $dialy->id }}">
                 <div class="submit">
-                    <input type="submit">
+                    <input type="submit" class="btn btn-primary" value="完了">
                 </div>
             </form>
         </div>

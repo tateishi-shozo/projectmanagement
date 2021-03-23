@@ -56,13 +56,12 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('messages.Login') }}
                                 </button>
-
+                                <a class="btn btn-link" href="{{ route('register') }}">新規登録</a>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         パスワードを忘れた方はこちら
                                     </a>
                                 @endif
-                                    <a class="btn btn-link" href="{{ route('register') }}">新規登録</a>
                             </div>
                         </div>
                     </form>

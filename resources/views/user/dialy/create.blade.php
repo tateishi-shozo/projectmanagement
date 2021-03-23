@@ -7,21 +7,16 @@
         <div class="row">
             <h2>日報作成</h2>
         </div>
+            @if ($errors->has('exception') or count($errors) > 0)
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            @endif
         <div class="dialy">
             <form action="{{ action('User\DialyController@create') }}" method="post" >
                 @csrf
-                @if (count($errors) > 0)
-                    <ul>
-                        @foreach($errors->all() as $e)
-                            <li>{{ $e }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-                @if ($errors->has('exception'))
-                    <div class="notification is-danger">
-                        <strong>{{ $errors->first('exception') }}</strong>
-                    </div>
-                @endif
                 <div class="name">
                     <label for="name">作成者</label>
                         {{ $user->name }}

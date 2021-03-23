@@ -12,7 +12,6 @@ class Dialy extends Model
     
     public static $rules = array(
         'fee_ids' => 'required',
-        'weight' => 'required',
     );
     
     public function fees()

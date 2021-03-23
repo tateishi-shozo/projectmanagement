@@ -17,6 +17,7 @@
                                 <th>開始日</th>
                                 <th>終了日</th>
                                 <th>残日数</th>
+                                <th>メモ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -26,6 +27,7 @@
                                     <td>{{ $user_project->start_date  }}</td>
                                     <td>{{ $user_project->end_date  }}</td>
                                     <td>{{ $user_project->getRemainingdays()  }}</td>
+                                    <td>{{ $user_project->memo }}</td>
                                     <td>
                                         <div>
                                             <a href="{{ action('User\DialyController@create', ['id' => $user_project->id]) }}" role="button" class="btn btn-primary">日報作成</a>

@@ -30,14 +30,26 @@ class DialyController extends Controller
     
     public function create(Request $request)
     {
+        $this->validate($request, Dialy::$rules);
+        
+        $dialy_fees =  array();
+        $forms = $request->all();
+        
         try{
-            if(isset($request)){
-                throw new \Exception('メールの形式が正しくありません。');
+            for($i = 0;$i<count($request->fee_ids);$i++){
+                
+                $fee_id = $request->fee_ids[$i];
+                
+                if(isset($forms["weight_".$fee_id])){
+                    
+                }else{
+                throw new \Exception('場所と重量が未入力か不一致です');
             }
-        }catch (\Exception $e) {
+        }
+        }catch(\Exception $e) {
             report($e);
             
-            throw new RedirectExceptions(redirect('user/dirly/create'), $e->getMessage());
+            throw new RedirectExceptions(route('user.dialy.create'), $e->getMessage());
             exit;
         }
     
@@ -46,10 +58,10 @@ class DialyController extends Controller
         
         $dialy->fill($form);
         $dialy->save();
-
+        
         $dialy_fees =  array();
         $forms = $request->all();
-       
+        
         for($i = 0;$i<count($request->fee_ids);$i++)
         {
             $fee_id = $request->fee_ids[$i];
