@@ -46,7 +46,7 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         if($user->profile == null){
-            $this->redirectTo = '/user/profile/create';
+            $this->redirectTo = 'user/profile/create';
         }elseif($user->is_admin == 2) {
             // 管理ユーザ
             $this->redirectTo = 'admin/project/index';
