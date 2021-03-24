@@ -47,15 +47,16 @@ class LoginController extends Controller
     {
         if($user->profile == null){
             $this->redirectTo = 'user/profile/create';
-        }elseif($user->is_admin == 2) {
+        }else{
+            if($user->is_admin == 2) {
             // 管理ユーザ
             $this->redirectTo = 'admin/project/index';
-        } else {
+            } else {
             // 一般ユーザ
             return redirect(route('user.index', [
                 'user' => $user->id,
             ]));
-        }
+        }}
     }
     
     protected function loggedOut(Request $request)
