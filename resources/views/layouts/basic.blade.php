@@ -84,7 +84,7 @@
                                 @endif
                                     <a class="dropdown-item" href="{{ route('login') }}"
                                        onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-home mr-1"></i>ログアウト</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                         @csrf
                                     </form>
                                 </div>
