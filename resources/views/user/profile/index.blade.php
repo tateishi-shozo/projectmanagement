@@ -10,10 +10,10 @@
         <div class="profile">
             <div class="image">
                 <label for="image"></label>
-                @if(isset($user->profile->image))
-                  <img src="{{ asset('storage/image/' . $profile->image) }}" alt='image'height="200" width="200">
+                @if(isset($profile->image))
+                  <img src="{{ $profile->image }}" alt='image'height="200" width="200">
                 @else
-                    <img src="/storage/noimage.png">
+                    <img src="noimage.png">
                 @endif
             </div>
             <div class="name">

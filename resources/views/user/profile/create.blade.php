@@ -23,7 +23,7 @@
                 </div>
                 <div class="image">
                     <label for="image">プロフィール画像</label>
-                    <input type="file" name="image" id="image">
+                    <br><input type="file" name="image" id="image">
                 </div>
                 <div class="user_id">
                     <input type="hidden" name="user_id" value="{{$user->id}}">

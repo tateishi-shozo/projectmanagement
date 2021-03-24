@@ -16,10 +16,10 @@
                 </div>
                 <div class="image">
                     <label for="image">プロフィール画像</label>
-                        <input type="file" name="image" id="image">
                         @if(isset($user->profile->image))
-                            <img src="{{ asset('storage/image/' . $profile->image) }}" alt='image' height="200" width="200">
+                            <br><img src="{{ $user->profile->image }}"  alt='image' height="200" width="200">
                         @endif
+                    <br><input type="file" name="image" id="image">
                 </div>
                 <div class="user_id">
                     <input type="hidden" name="user_id" value="{{$user->id}}">

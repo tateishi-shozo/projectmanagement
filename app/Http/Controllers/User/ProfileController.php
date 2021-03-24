@@ -30,10 +30,10 @@ class ProfileController extends Controller
         $form = $request->all();
         
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $profile->image = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $profile->image = Storage::disk('s3')->url($path);
           } else {
-              $profile->image = basename("public/image/noimage.png");
+              $profile->image = Storage::disk('s3')->url("noimage.png");
           }
         
         unset($form['image']); 
@@ -72,8 +72,8 @@ class ProfileController extends Controller
         $form = $request->all();
         
         if (isset($form['image'])) {
-            $path = $request->file('image')->store('public/image');
-            $profile->image = basename($path);
+            $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+            $profile->image = Storage::disk('s3')->url($path);
           } 
         
         unset($form['image']);

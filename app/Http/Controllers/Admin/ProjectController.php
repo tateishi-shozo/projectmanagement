@@ -15,6 +15,8 @@ use App\Project;
 use App\User;
 use App\Profile;
 
+use Storage;
+
 class ProjectController extends Controller
 {
     //

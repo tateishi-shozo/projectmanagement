@@ -52,7 +52,7 @@
                                     <td>
                                         @foreach($project->users as $user)
                                         <div class="float-left m-1">
-                                            <img src="{{ asset('storage/image/' . $user->profile->image) }}" width="50" height="50" class="rounded-circle">
+                                            <img src="{{ $user->profile->image }}" width="50" height="50" class="rounded-circle">
                                             <p class="text-center">{{ $user->name }}</p>
                                         </div>
                                         @endforeach

@@ -43,7 +43,7 @@
                     <form action="{{ action('Admin\ProjectController@record') }}" method="post">
                         @csrf
                         <div class="card m-2" style="width:10rem;">
-                            <img class="card-img" src="{{ asset('storage/image/' . $user->image) }}" alt="Card image" height="150">
+                            <img class="card-img" src="{{ $user->image }}" alt="Card image" height="150">
                             <div class="card-body">
                                 <h4 class="card-title">{{$user->name }}</h4>
                                 <input type="hidden" name="start_date" value="{{ $project->start_date }}">
@@ -64,7 +64,7 @@
                     <form action="{{ action('Admin\ProjectController@remove') }}" method="post">
                         @csrf
                             <div class="card m-2" style="width:10rem;">
-                                    <img class="card-img" src="{{ asset('storage/image/' . $notassinguser->image) }}" alt="Card image" height="150">
+                                    <img class="card-img" src="{{ $notassinguser->image }}" alt="Card image" height="150">
                                     <div class="card-img-overlay">
                                         <h2 class="card-text text-center m-3">{{ $notassinguser->project_name }}</h2>
                                     </div>

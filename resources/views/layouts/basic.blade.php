@@ -73,7 +73,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 @if(isset(Auth::user()->profile->image))
-                                    <img src="{{ asset('storage/image/' . Auth::user()->profile->image) }}" width="30" height="30" class="rounded-circle">
+                                    <img src="{{ Auth::user()->profile->image }}" width="30" height="30" class="rounded-circle">
                                 @endif
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>

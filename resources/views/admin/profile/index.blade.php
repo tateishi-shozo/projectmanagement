@@ -24,7 +24,7 @@
                     <tbody>
                         @foreach($profiles as $profile)
                             <tr>
-                                <th><img src="{{ asset('storage/image/' . $profile->image) }}" height="100" width="100"></th>
+                                <th><img src="{{ $profile->image }}" height="100" width="100"></th>
                                 <td>{{ $profile->user->name }}</td>
                                 <td>{{ $profile->getBirthDay() }}歳</td>
                                 <td>{{ $profile->birthday }}</td>
