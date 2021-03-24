@@ -42,7 +42,6 @@ class ProfileController extends Controller
         
         $profile->licenses()->attach($request->license_ids);
         
-        
         return redirect('user/profile/');
     }
     
