@@ -4,7 +4,7 @@
 
 @section('content')
    <div class="container">
-        <div class="row">
+        <div class="m-auto">
             <h2>プロジェクト</h2>
         </div>
         <div class="row">
@@ -27,9 +27,8 @@
                </form>
            </div>
         </div>
-        <div class="row">
+        <div class="m-auto">
             <div class="col-md-12 mx-auto">
-                <div class="row">
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -64,12 +63,12 @@
                                     </td>
                                     <td>
                                         <div>
-                                            <a href="{{ action('Admin\ProjectController@assign', ['id' => $project->id]) }}" role="button" class="btn btn-primary">アサイン</a>
+                                            <a href="{{ action('Admin\ProjectController@assign', ['id' => $project->id]) }}" role="button" class="btn btn-primary">担当</a>
                                         </div>
                                     </td>
                                     <td>
                                         <div>
-                                            <a href="{{ action('User\DialyController@create', ['id' => $project->id]) }}" role="button" class="btn btn-primary">日報作成</a>
+                                            <a href="{{ action('User\DialyController@create', ['id' => $project->id]) }}" role="button" class="btn btn-primary">日報</a>
                                         </div>
                                     </td>
                                     <td>
@@ -79,7 +78,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
                 <div class="link">
                     {{ $projects->links() }}
                 </div>
