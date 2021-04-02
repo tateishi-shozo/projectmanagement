@@ -69,7 +69,7 @@
         </table>
     </div>
     <div class="m-auto">
-        <h2 class="border bg-secondary text-white" style="padding:10px;">アサイン可能</h2>
+        <h2 class="border bg-secondary text-white" style="padding:10px;">アサイン済</h2>
     </div>
     <div class="col-md-12 mx-auto">
         <table class="table table-striped">
@@ -77,7 +77,7 @@
                 <tr>
                     <th>ユーザー</th>
                     <th>名前</th>
-                    <th>アサイン済</th>
+                    <th>工事名</th>
                     <th>削除</th>
                 </tr>
             </thead>
